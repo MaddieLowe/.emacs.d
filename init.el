@@ -34,6 +34,7 @@
 (setq-default show-trailing-whitespace t)
 (show-paren-mode t)
 (setq-default truncate-lines t)
+(setq-default indent-tabs-mode nil)
 
 (global-set-key [M-left] 'windmove-left)
 (global-set-key [M-right] 'windmove-right)
@@ -45,3 +46,8 @@
 (set-background-color "black")
 (set-foreground-color "grey")
 (set-cursor-color "grey")
+
+(require 'js2-mode)
+(require 'ido)
+(ido-mode)
+(ido-everywhere t)
