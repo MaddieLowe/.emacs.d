@@ -2,11 +2,11 @@
 (source melpa)
 (source org)
 
+(depends-on "adoc-mode")
 (depends-on "cask")
 (depends-on "dash")
 (depends-on "epl")
 (depends-on "f")
-(depends-on "find-file-in-repository")
 (depends-on "flymake-easy")
 (depends-on "flymake-jshint")
 (depends-on "js2-mode")

@@ -40,6 +40,7 @@
 (global-set-key [M-right] 'windmove-right)
 (global-set-key [M-up] 'windmove-up)
 (global-set-key [M-down] 'windmove-down)
+(global-set-key [(control /)]  'comment-dwim)
 
 ;;(set-face-attribute 'default nil :height 100)
 
@@ -51,3 +52,8 @@
 (require 'ido)
 (ido-mode)
 (ido-everywhere t)
+
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.json\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.ejs\\'" . html-mode))
+(add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
