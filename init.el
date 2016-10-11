@@ -41,6 +41,7 @@
 (global-set-key [M-up] 'windmove-up)
 (global-set-key [M-down] 'windmove-down)
 (global-set-key [(control /)]  'comment-dwim)
+(global-set-key [(control t)] 'goto-line)
 
 ;;(set-face-attribute 'default nil :height 100)
 
