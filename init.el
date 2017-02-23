@@ -35,6 +35,7 @@
 (show-paren-mode t)
 (setq-default truncate-lines t)
 (setq-default indent-tabs-mode nil)
+(setq column-number-mode t)
 
 (global-set-key [M-left] 'windmove-left)
 (global-set-key [M-right] 'windmove-right)
@@ -58,3 +59,21 @@
 (add-to-list 'auto-mode-alist '("\\.json\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.ejs\\'" . html-mode))
 (add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
+
+(defun source-mode-config ()
+  (setq tab-width 4
+	whitespace-check-buffer-indent nil
+	whitespace-check-indent-whitespace nil
+	indent-tabs-mode nil
+	c-indent-level 4))
+
+(defun c-mode-config ()
+  (source-mode-config)
+  (setq c-offsets-alist (quote ((inline-open . 0) (topmost-intro . -))))
+  (c-set-style "stroustrup")
+  (c-set-offset 'inline-open 0))
+
+(add-hook 'c-mode-hook 'c-mode-config)
+(add-hook 'objc-mode-hook 'c-mode-config)
+(add-hook 'c++-mode-hook 'c-mode-config)
+(add-hook 'java-mode-hook 'c-mode-config)
