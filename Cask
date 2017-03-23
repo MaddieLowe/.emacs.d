@@ -14,5 +14,4 @@
 (depends-on "markup-faces")
 (depends-on "package-build")
 (depends-on "pallet")
-(depends-on "s")
-(depends-on "shut-up")
+(depends-on "magit")

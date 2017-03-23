@@ -1,3 +1,10 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
@@ -24,7 +31,15 @@
  '(default ((t (:inherit nil :stipple nil :background "#212121" :foreground "grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 83 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(shell-option-face ((t (:foreground "red"))) t)
  '(shell-output-face ((t (:foreground "blue" :italic nil))) t)
- '(shell-prompt-face ((t (:foreground "blue" :bold t))) t))
+ '(shell-prompt-face ((t (:foreground "blue" :bold t))) t)
+ '(magit-diff-added ((t (:foreground "green"))))
+ '(magit-diff-added-highlight ((t (:background "grey10" :foreground "green"))))
+ '(magit-diff-context-highlight ((t (:background "grey10" :foreground "grey70"))))
+ '(magit-diff-file-heading ((t (:foreground "royal blue" :weight bold))))
+ '(magit-diff-removed ((t (:foreground "red"))))
+ '(magit-diff-removed-highlight ((t (:background "grey10" :foreground "red"))))
+ '(magit-section-heading ((t (:foreground "orange" :weight bold))))
+ '(magit-section-highlight ((t (:background "grey15")))))
 
 (cua-mode t)
 (tool-bar-mode -1)
@@ -36,6 +51,9 @@
 (setq-default truncate-lines t)
 (setq-default indent-tabs-mode nil)
 (setq column-number-mode t)
+;; copy-paste settings
+(setq save-interprogram-paste-before-kill t)
+(setq x-select-enable-clipboard nil)
 
 (global-set-key [M-left] 'windmove-left)
 (global-set-key [M-right] 'windmove-right)
