@@ -21,7 +21,9 @@
 ;; '(ansi-color-names-vector
 ;;   ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
 ;; '(custom-enabled-themes (quote (manoj-dark))))
- '(indent-tabs-mode nil))
+ '(indent-tabs-mode nil)
+ '(cua-mode t nil (cua-base)))
+
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -41,7 +43,6 @@
  '(magit-section-heading ((t (:foreground "orange" :weight bold))))
  '(magit-section-highlight ((t (:background "grey15")))))
 
-(cua-mode t)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (font-lock-mode t)
@@ -51,9 +52,6 @@
 (setq-default truncate-lines t)
 (setq-default indent-tabs-mode nil)
 (setq column-number-mode t)
-;; copy-paste settings
-(setq save-interprogram-paste-before-kill t)
-(setq x-select-enable-clipboard nil)
 
 (global-set-key [M-left] 'windmove-left)
 (global-set-key [M-right] 'windmove-right)
