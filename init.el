@@ -16,13 +16,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-;; '(ansi-color-faces-vector
-;;   [default default default italic underline success warning error])
-;; '(ansi-color-names-vector
-;;   ["black" "red3" "ForestGreen" "yellow3" "blue" "magenta3" "DeepSkyBlue" "gray50"])
-;; '(custom-enabled-themes (quote (manoj-dark))))
+ '(cua-mode t nil (cua-base))
  '(indent-tabs-mode nil)
- '(cua-mode t nil (cua-base)))
+ '(package-selected-packages
+   (quote
+    (flymake-yaml yaml-mode 0blayout pallet magit less-css-mode js2-mode flymake-jshint adoc-mode))))
 
 
 (custom-set-faces
@@ -31,9 +29,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#212121" :foreground "grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 83 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
- '(shell-option-face ((t (:foreground "red"))) t)
- '(shell-output-face ((t (:foreground "blue" :italic nil))) t)
- '(shell-prompt-face ((t (:foreground "blue" :bold t))) t)
+ '(diff-added ((t (:foreground "green"))))
+ '(diff-changed ((nil (:foreground "orange"))))
+ '(diff-file-header ((((class color) (min-colors 88) (background dark)) (:inherit diff-header :weight bold))))
+ '(diff-header ((((class color) (min-colors 88) (background dark)) (:background "blue"))))
+ '(diff-index ((t (:background "blue"))))
+ '(diff-removed ((t (:foreground "red"))))
  '(magit-diff-added ((t (:foreground "green"))))
  '(magit-diff-added-highlight ((t (:background "grey10" :foreground "green"))))
  '(magit-diff-context-highlight ((t (:background "grey10" :foreground "grey70"))))
@@ -41,7 +42,10 @@
  '(magit-diff-removed ((t (:foreground "red"))))
  '(magit-diff-removed-highlight ((t (:background "grey10" :foreground "red"))))
  '(magit-section-heading ((t (:foreground "orange" :weight bold))))
- '(magit-section-highlight ((t (:background "grey15")))))
+ '(magit-section-highlight ((t (:background "grey15"))))
+ '(shell-option-face ((t (:foreground "red"))) t)
+ '(shell-output-face ((t (:foreground "blue" :italic nil))) t)
+ '(shell-prompt-face ((t (:foreground "blue" :bold t))) t))
 
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -89,7 +93,40 @@
   (c-set-style "stroustrup")
   (c-set-offset 'inline-open 0))
 
+;; Font size keybindings
+(defun adjust-default-font-height (delta)
+  (let* ((old (face-attribute 'default :height))
+         (height (+ (face-attribute 'default :height) delta))
+         (points (/ height 10)))
+    (set-face-attribute 'default nil :height height)
+    (message "default font old %d new %d" old (face-attribute 'default :height))))
+
+(defun increase-default-font-height ()
+  (interactive)
+  (adjust-default-font-height +5))
+
+(defun decrease-default-font-height ()
+  (interactive)
+  (adjust-default-font-height -5))
+
+(defun check-default-font-height ()
+  (interactive)
+  (adjust-default-font-height 0))
+
+(global-set-key (kbd "C-x C->") 'increase-default-font-height)
+(global-set-key (kbd "C-x C-<") 'decrease-default-font-height)
+(global-set-key (kbd "C-x C-?") 'check-default-font-height)
+
 (add-hook 'c-mode-hook 'c-mode-config)
 (add-hook 'objc-mode-hook 'c-mode-config)
 (add-hook 'c++-mode-hook 'c-mode-config)
 (add-hook 'java-mode-hook 'c-mode-config)
+
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
+(add-hook 'yaml-mode-hook
+          '(lambda ()
+             (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+
+(require 'flymake-yaml)
+(add-hook 'yaml-mode-hook 'flymake-yaml-load)
