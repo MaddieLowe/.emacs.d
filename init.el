@@ -127,6 +127,9 @@
 (add-hook 'yaml-mode-hook
           '(lambda ()
              (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
+(add-hook 'yaml-mode-hook
+          '(lambda ()
+             (modify-syntax-entry ?' "\'")))
 
 (require 'flymake-yaml)
 (add-hook 'yaml-mode-hook 'flymake-yaml-load)
