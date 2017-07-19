@@ -20,32 +20,95 @@
  '(indent-tabs-mode nil)
  '(package-selected-packages
    (quote
-    (flymake-yaml yaml-mode 0blayout pallet magit less-css-mode js2-mode flymake-jshint adoc-mode))))
+    (sublimity minimap multiple-cursors flymake-yaml yaml-mode 0blayout pallet magit less-css-mode js2-mode flymake-jshint adoc-mode)))
+ ;; Buffer switching in separate frame
+ '(ido-default-buffer-method
+   (quote selected-window)))
 
+;; Setup new colors that look like Atom's default dark theme (because it's pretty)
+;; Probably don't want to use the foreground and background colors
+(defvar atom-one-dark-colors-alist
+  '(("atom-one-dark-accent"   . "#528BFF")
+    ("atom-one-dark-fg"       . "#ABB2BF")
+    ("atom-one-dark-bg"       . "#282C34")
+    ("atom-one-dark-bg-1"     . "#121417")
+    ("atom-one-dark-bg-hl"    . "#2F343D")
+    ("atom-one-dark-gutter"   . "#666D7A")
+    ("atom-one-dark-accent"   . "#AEB9F5")
+    ("atom-one-dark-mono-1"   . "#ABB2BF")
+    ("atom-one-dark-mono-2"   . "#828997")
+    ("atom-one-dark-mono-3"   . "#5C6370")
+    ("atom-one-dark-cyan"     . "#56B6C2")
+    ("atom-one-dark-blue"     . "#61AFEF")
+    ("atom-one-dark-purple"   . "#C678DD")
+    ("atom-one-dark-green"    . "#98C379")
+    ("atom-one-dark-red-1"    . "#E06C75")
+    ("atom-one-dark-red-2"    . "#BE5046")
+    ("atom-one-dark-orange-1" . "#D19A66")
+    ("atom-one-dark-orange-2" . "#E5C07B")
+    ("atom-one-dark-gray"     . "#3E4451")
+    ("atom-one-dark-silver"   . "#AAAAAA")
+    ("atom-one-dark-black"    . "#0F1011"))
+  "List of Atom One Dark colors.")
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#212121" :foreground "grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 83 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
- '(diff-added ((t (:foreground "green"))))
- '(diff-changed ((nil (:foreground "orange"))))
- '(diff-file-header ((((class color) (min-colors 88) (background dark)) (:inherit diff-header :weight bold))))
- '(diff-header ((((class color) (min-colors 88) (background dark)) (:background "blue"))))
- '(diff-index ((t (:background "blue"))))
- '(diff-removed ((t (:foreground "red"))))
- '(magit-diff-added ((t (:foreground "green"))))
- '(magit-diff-added-highlight ((t (:background "grey10" :foreground "green"))))
- '(magit-diff-context-highlight ((t (:background "grey10" :foreground "grey70"))))
- '(magit-diff-file-heading ((t (:foreground "royal blue" :weight bold))))
- '(magit-diff-removed ((t (:foreground "red"))))
- '(magit-diff-removed-highlight ((t (:background "grey10" :foreground "red"))))
- '(magit-section-heading ((t (:foreground "orange" :weight bold))))
- '(magit-section-highlight ((t (:background "grey15"))))
- '(shell-option-face ((t (:foreground "red"))) t)
- '(shell-output-face ((t (:foreground "blue" :italic nil))) t)
- '(shell-prompt-face ((t (:foreground "blue" :bold t))) t))
+(defmacro atom-one-dark-with-color-variables (&rest body)
+  "Bind the colors list around BODY."
+  (declare (indent 0))
+  `(let ((class '((class color) (min-colors 89)))
+         ,@ (mapcar (lambda (cons)
+                      (list (intern (car cons)) (cdr cons)))
+                    atom-one-dark-colors-alist))
+     ,@body))
+
+(atom-one-dark-with-color-variables
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so be careful.
+   ;; Your init file should contain only one such instance.
+   ;; If there is more than one, they won't work right.
+   '(default ((t (:inherit nil :stipple nil :background "black" :foreground "grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 83 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+   '(diff-added ((t (:foreground "green"))))
+   '(diff-changed ((nil (:foreground "orange"))))
+   '(diff-file-header ((((class color) (min-colors 88) (background dark)) (:inherit diff-header :weight bold))))
+   '(diff-header ((((class color) (min-colors 88) (background dark)) (:background "blue"))))
+   '(diff-index ((t (:background "blue"))))
+   '(diff-removed ((t (:foreground "red"))))
+   '(magit-diff-added ((t (:foreground "green"))))
+   '(magit-diff-added-highlight ((t (:background "grey10" :foreground "green"))))
+   '(magit-diff-context-highlight ((t (:background "grey10" :foreground "grey70"))))
+   '(magit-diff-file-heading ((t (:foreground "royal blue" :weight bold))))
+   '(magit-diff-removed ((t (:foreground "red"))))
+   '(magit-diff-removed-highlight ((t (:background "grey10" :foreground "red"))))
+   '(magit-section-heading ((t (:foreground "orange" :weight bold))))
+   '(magit-section-highlight ((t (:background "grey15"))))
+   '(shell-option-face ((t (:foreground "red"))) t)
+   '(shell-output-face ((t (:foreground "blue" :italic nil))) t)
+   '(shell-prompt-face ((t (:foreground "blue" :bold t))) t)
+
+   ;; atom default colors (only the ones that I like)
+   `(warning ((t (:foreground ,atom-one-dark-orange-2))))
+   `(error ((t (:foreground ,atom-one-dark-red-1 :weight bold))))
+   `(region ((t (:background ,atom-one-dark-gray))))
+   `(highlight ((t (:background ,atom-one-dark-gray))))
+   `(hl-line ((t (:background ,atom-one-dark-bg-hl))))
+   `(secondary-selection ((t (:background ,atom-one-dark-bg-1))))
+
+   ;; atom font colors
+   `(font-lock-builtin-face ((t (:foreground ,atom-one-dark-cyan))))
+   `(font-lock-function-name-face ((t (:foreground "lightgoldenrod"))))
+   `(font-lock-keyword-face ((t (:foreground ,atom-one-dark-purple))))
+   `(font-lock-string-face ((t (:foreground ,atom-one-dark-green))))
+   `(font-lock-variable-name-face ((t (:foreground ,atom-one-dark-red-1))))
+
+   ;; ido atom colors
+   `(ido-first-match ((t (:foreground ,atom-one-dark-purple :weight bold))))
+   `(ido-only-match ((t (:foreground ,atom-one-dark-red-1 :weight bold))))
+   `(ido-subdir ((t (:foreground ,atom-one-dark-blue))))
+   `(ido-virtual ((t (:foreground ,atom-one-dark-mono-3))))
+
+   ;; js2-mode
+   `(js2-function-call ((t (:inherit (font-lock-function-name-face)))))
+   ))
 
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -64,11 +127,13 @@
 (global-set-key [(control /)]  'comment-dwim)
 (global-set-key [(control t)] 'goto-line)
 
-;;(set-face-attribute 'default nil :height 100)
+(set-face-attribute 'default nil :height 110)
 
-(set-background-color "black")
-(set-foreground-color "grey")
-(set-cursor-color "grey")
+;; Set defaults that apply to all new frames that are created
+(setq default-frame-alist
+      '((background-color . "black")
+        (foreground-color . "grey")
+        (cursor-color . "grey")))
 
 (require 'js2-mode)
 (require 'ido)
@@ -133,3 +198,17 @@
 
 (require 'flymake-yaml)
 (add-hook 'yaml-mode-hook 'flymake-yaml-load)
+
+(require 'whitespace)
+(setq whitespace-line-column 120)
+(setq whitespace-style '(face lines-tail))
+(global-whitespace-mode +1)
+
+(require 'multiple-cursors)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-C C-C") 'mc/edit-lines)
+
+(require 'magit)
+(global-set-key (kbd "C-x C-m") 'magit-status)

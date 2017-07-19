@@ -4,6 +4,7 @@
 
 (depends-on "0blayout")
 (depends-on "adoc-mode")
+(depends-on "async")
 (depends-on "cask")
 (depends-on "dash")
 (depends-on "epl")
@@ -17,6 +18,7 @@
 (depends-on "magit")
 (depends-on "magit-popup")
 (depends-on "markup-faces")
+(depends-on "multiple-cursors")
 (depends-on "package-build")
 (depends-on "pallet")
 (depends-on "s")
