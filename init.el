@@ -111,7 +111,7 @@
    ))
 
 (tool-bar-mode -1)
-(scroll-bar-mode -1)
+;; (scroll-bar-mode -1) ;; remove this in favor of setting in default-frame-alist
 (font-lock-mode t)
 (global-linum-mode t)
 (setq-default show-trailing-whitespace t)
@@ -133,7 +133,8 @@
 (setq default-frame-alist
       '((background-color . "black")
         (foreground-color . "grey")
-        (cursor-color . "grey")))
+        (cursor-color . "grey")
+        (vertical-scroll-bars . nil)))
 
 (require 'js2-mode)
 (require 'ido)
