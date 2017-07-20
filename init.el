@@ -135,10 +135,7 @@
 
 ;; Set defaults that apply to all new frames that are created
 (setq default-frame-alist
-      '((background-color . "black")
-        (foreground-color . "grey")
-        (cursor-color . "grey")
-        (vertical-scroll-bars . nil)))
+      '((vertical-scroll-bars . nil)))
 
 (require 'js2-mode)
 (require 'ido)
@@ -224,4 +221,12 @@
     (define-key org-mode-map (kbd "<M-right>") nil)
     (define-key org-mode-map (kbd "<M-left>") nil)
     (define-key org-mode-map (kbd "<M-up>") nil)
-    (define-key org-mode-map (kbd "<M-down>") nil)))
+    (define-key org-mode-map (kbd "<M-down>") nil)
+    (define-key org-mode-map (kbd "<C-down>") 'org-metadown)
+    (define-key org-mode-map (kbd "<C-right>") 'org-metaright)
+    (define-key org-mode-map (kbd "<C-up>") 'org-metaup)
+    (define-key org-mode-map (kbd "<C-left>") 'org-metaleft)))
+
+(setq frame-title-format
+      (list (format "%s %%S: %%j " (system-name))
+            '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
