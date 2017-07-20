@@ -12,6 +12,7 @@
 (depends-on "flymake-easy")
 (depends-on "flymake-jshint")
 (depends-on "flymake-yaml")
+(depends-on "framemove")
 (depends-on "git-commit")
 (depends-on "js2-mode")
 (depends-on "less-css-mode")

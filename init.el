@@ -120,6 +120,10 @@
 (setq-default indent-tabs-mode nil)
 (setq column-number-mode t)
 
+;; Change frames with keybindings
+(require 'framemove)
+(setq framemove-hook-into-windmove t)
+
 (global-set-key [M-left] 'windmove-left)
 (global-set-key [M-right] 'windmove-right)
 (global-set-key [M-up] 'windmove-up)
@@ -213,3 +217,11 @@
 
 (require 'magit)
 (global-set-key (kbd "C-x C-m") 'magit-status)
+
+;; Don't allow org-mode to override some keys
+(eval-after-load 'org
+  (progn
+    (define-key org-mode-map (kbd "<M-right>") nil)
+    (define-key org-mode-map (kbd "<M-left>") nil)
+    (define-key org-mode-map (kbd "<M-up>") nil)
+    (define-key org-mode-map (kbd "<M-down>") nil)))
