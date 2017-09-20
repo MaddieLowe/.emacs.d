@@ -16,14 +16,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(cua-mode t nil (cua-base))
- '(indent-tabs-mode nil)
+ '(cua-mode t nil (cua-base)) ;; still need this
+ '(ido-default-buffer-method (quote selected-window)) ;; still need this
+ '(indent-tabs-mode nil) ;; still need this
+ '(magit-diff-refine-hunk t) ;; still need this
  '(package-selected-packages
    (quote
-    (sublimity minimap multiple-cursors flymake-yaml yaml-mode 0blayout pallet magit less-css-mode js2-mode flymake-jshint adoc-mode)))
- ;; Buffer switching in separate frame
- '(ido-default-buffer-method
-   (quote selected-window)))
+    (framemove magit-popup markup-faces s with-editor sublimity minimap multiple-cursors flymake-yaml yaml-mode 0blayout pallet magit less-css-mode js2-mode flymake-jshint adoc-mode))))
 
 ;; Setup new colors that look like Atom's default dark theme (because it's pretty)
 ;; Probably don't want to use the foreground and background colors
@@ -81,6 +80,8 @@
    '(magit-diff-removed-highlight ((t (:background "grey10" :foreground "red"))))
    '(magit-section-heading ((t (:foreground "orange" :weight bold))))
    '(magit-section-highlight ((t (:background "grey15"))))
+   '(diff-refine-added ((t (:inherit diff-refine-changed :background "#005500"))))
+   '(diff-refine-removed ((t (:inherit diff-refine-changed :background "#660000"))))
    '(shell-option-face ((t (:foreground "red"))) t)
    '(shell-output-face ((t (:foreground "blue" :italic nil))) t)
    '(shell-prompt-face ((t (:foreground "blue" :bold t))) t)
@@ -230,3 +231,57 @@
 (setq frame-title-format
       (list (format "%s %%S: %%j " (system-name))
             '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "grey" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 83 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+ '(diff-added ((t (:foreground "green"))))
+ '(diff-changed ((nil (:foreground "orange"))))
+ '(diff-file-header ((((class color) (min-colors 88) (background dark)) (:inherit diff-header :weight bold))))
+ '(diff-header ((((class color) (min-colors 88) (background dark)) (:background "blue"))))
+ '(diff-index ((t (:background "blue"))))
+ '(diff-refine-added ((t (:inherit diff-refine-changed :background "#005500"))))
+ '(diff-refine-removed ((t (:inherit diff-refine-changed :background "#660000"))))
+ '(diff-removed ((t (:foreground "red"))))
+ '(error ((t (:foreground "#E06C75" :weight bold))))
+ '(font-lock-builtin-face ((t (:foreground "#56B6C2"))))
+ '(font-lock-function-name-face ((t (:foreground "lightgoldenrod"))))
+ '(font-lock-keyword-face ((t (:foreground "#C678DD"))))
+ '(font-lock-string-face ((t (:foreground "#98C379"))))
+ '(font-lock-variable-name-face ((t (:foreground "#E06C75"))))
+ '(highlight ((t (:background "#3E4451"))))
+ '(hl-line ((t (:background "#2F343D"))))
+ '(ido-first-match ((t (:foreground "#C678DD" :weight bold))))
+ '(ido-only-match ((t (:foreground "#E06C75" :weight bold))))
+ '(ido-subdir ((t (:foreground "#61AFEF"))))
+ '(ido-virtual ((t (:foreground "#5C6370"))))
+ '(js2-function-call ((t (:inherit (font-lock-function-name-face)))))
+ '(magit-diff-added ((t (:foreground "green"))))
+ '(magit-diff-added-highlight ((t (:background "grey10" :foreground "green"))))
+ '(magit-diff-context-highlight ((t (:background "grey10" :foreground "grey70"))))
+ '(magit-diff-file-heading ((t (:foreground "royal blue" :weight bold))))
+ '(magit-diff-removed ((t (:foreground "red"))))
+ '(magit-diff-removed-highlight ((t (:background "grey10" :foreground "red"))))
+ '(magit-section-heading ((t (:foreground "orange" :weight bold))))
+ '(magit-section-highlight ((t (:background "grey15"))))
+ '(region ((t (:background "#3E4451"))))
+ '(secondary-selection ((t (:background "#121417"))))
+ '(shell-option-face ((t (:foreground "red"))) t)
+ '(shell-output-face ((t (:foreground "blue" :italic nil))) t)
+ '(shell-prompt-face ((t (:foreground "blue" :bold t))) t)
+ '(warning ((t (:foreground "#E5C07B")))))
+
+;; Slack stuff
+;; (require 'slack)
+;; (setq slack-buffer-emojify t) ;; if you want to enable emoji, default nil
+;; (setq slack-prefer-current-team t)
+;; (slack-register-team
+;;  :name "arterys"
+;;  :default t
+;;  :client-id "26983689477.243645515105"
+;;  :client-secret "4ecf0ebf940e748e41e25f3caeddbb30"
+;;  :token "244170519922.c23a8ba7c802530c914a001b52714ac14c62492daefc942f89a5efa74bfbb8d9"
+;;  :subscribed-channels '(calgary calgary-dev))
+
