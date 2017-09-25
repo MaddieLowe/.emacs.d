@@ -6,3 +6,6 @@ network-security.data
 session.*
 elpa*
 settings.el
+.mc-lists.el
+recentf
+url/*

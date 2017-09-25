@@ -188,12 +188,7 @@
 (use-package less-css-mode
              :mode "\\.less\\'"
              :ensure t)
-(use-package web-mode
-             :config (setq web-mode-markup-indent-offset 2)
-             :mode (("\\.html\\'" . web-mode)
-                    ("\\.ejs\\'" . web-mode)
-                    ("\\.tpl\\'" . web-mode))
-             :ensure t)
+(add-to-list 'auto-mode-alist '("\\.ejs\\'" . html-mode))
 (use-package adoc-mode
              :mode ("\\.adoc\\'" . adoc-mode)
              :ensure t)
