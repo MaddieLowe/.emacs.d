@@ -146,20 +146,12 @@
 (use-package cl
              :ensure t)
 
-(use-package framemove
-             :config
-             (progn
-               (setq framemove-hook-into-windmove t)
-               (global-set-key [M-left] 'windmove-left)
-               (global-set-key [M-right] 'windmove-right)
-               (global-set-key [M-up] 'windmove-up)
-               (global-set-key [M-down] 'windmove-down))
-             :ensure t)
-
-;;(global-set-key [M-left] 'windmove-left)
-;;(global-set-key [M-right] 'windmove-right)
-;;(global-set-key [M-up] 'windmove-up)
-;;(global-set-key [M-down] 'windmove-down)
+(require 'framemove)
+(setq framemove-hook-into-windmove t)
+(global-set-key [M-left] 'windmove-left)
+(global-set-key [M-right] 'windmove-right)
+(global-set-key [M-up] 'windmove-up)
+(global-set-key [M-down] 'windmove-down)
 
 (setq frame-title-format
       (list (format "%s %%S: %%j " (system-name))
