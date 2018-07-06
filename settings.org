@@ -324,7 +324,7 @@
   :ensure t
   :config
   (setq company-tooltip-align-annotations t)
-  (add-hook 'before-save-hook 'tide-format-before-save)
+  ;;(add-hook 'before-save-hook 'tide-format-before-save) ;; This was causing really annoying indenting
   (add-hook 'typescript-mode-hook #'setup-tide-mode))
 
 (add-hook 'js2-mode-hook #'setup-tide-mode)
@@ -334,9 +334,9 @@
 (use-package web-mode
   :mode ("\\.html$" . web-mode)
   :init
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-markup-indent-offset 4)
+  (setq web-mode-code-indent-offset 4)
+  (setq web-mode-css-indent-offset 4)
 
   (setq web-mode-enable-auto-pairing t)
   (setq web-mode-enable-auto-expanding t)
