@@ -340,6 +340,7 @@
 
   (setq web-mode-enable-auto-pairing nil)
   (setq web-mode-enable-auto-expanding nil)
+  (setq web-mode-auto-quote-style nil)
   (setq web-mode-enable-css-colorization t))
 
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
