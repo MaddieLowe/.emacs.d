@@ -338,8 +338,8 @@
   (setq web-mode-code-indent-offset 4)
   (setq web-mode-css-indent-offset 4)
 
-  (setq web-mode-enable-auto-pairing t)
-  (setq web-mode-enable-auto-expanding t)
+  (setq web-mode-enable-auto-pairing nil)
+  (setq web-mode-enable-auto-expanding nil)
   (setq web-mode-enable-css-colorization t))
 
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
