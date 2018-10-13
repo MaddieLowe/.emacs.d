@@ -100,8 +100,8 @@
 (setq column-number-mode t)
 
 ;; Set defaults that apply to all new frames that are created
-(setq default-frame-alist
-      '((vertical-scroll-bars . nil)))
+(add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; Font size keybindings
 (defun adjust-default-font-height (delta)
