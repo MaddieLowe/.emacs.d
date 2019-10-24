@@ -138,7 +138,9 @@
  '(cua-mode t nil (cua-base))
  '(ido-default-buffer-method (quote selected-window))
  '(indent-tabs-mode nil)
- '(magit-diff-refine-hunk t))
+ '(magit-diff-refine-hunk t)
+ '(js2-strict-inconsistent-return-warning nil)
+ '(js2-strict-trailing-comma-warning nil))
 #+END_SRC
 * Window and frame keybindings
 #+BEGIN_SRC emacs-lisp
@@ -317,8 +319,7 @@
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save-mode-enabled idle-change new-line))
   (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  (company-mode +1))
+  (tide-hl-identifier-mode +1))
 
 (use-package tide
   :ensure t
@@ -350,4 +351,39 @@
               (setup-tide-mode))))
 ;; enable typescript-tslint checker
 (flycheck-add-mode 'typescript-tslint 'web-mode)
+#+END_SRC
+* vue
+#+BEGIN_SRC emacs-lisp
+    (use-package prettier-js
+    :ensure t)
+;;    (use-package vue-mode
+;;    :init
+;;      (add-hook 'vue-mode-hook #'lsp)
+;;    :config
+;;      (setq mmm-submode-decoration-level 0)
+;;      (setq mmm-js-mode-enter-hook (lambda () (setq syntax-ppss-table nil)))
+;;      (setq mmm-typescript-mode-enter-hook (lambda () (setq syntax-ppss-table nil)))
+;;    :ensure t)
+
+    (use-package vue-mode
+    :init
+    (add-hook 'vue-mode-hook #'lsp)
+    :config
+    (setq mmm-submode-decoration-level 0)
+    (setq mmm-js-mode-enter-hook (lambda () (setq syntax-ppss-table nil)))
+    (setq mmm-typescript-mode-enter-hook (lambda ()
+                                         (setq syntax-ppss-table nil)
+                                         (make-local-variable 'typescript-indent-level)
+                                         (setq typescript-indent-level 2)))
+                                         (add-to-list 'vue-modes '(:type template :name nil :mode web-mode))
+                                         (add-to-list 'vue-modes '(:type template :name html :mode web-mode))
+                                         :ensure t)
+
+    (use-package lsp-mode
+    :init
+    (setq lsp-auto-guess-root t)  ;; if you have projectile ...
+    :ensure t)
+
+    (use-package lsp-ui
+    :ensure t)
 #+END_SRC
