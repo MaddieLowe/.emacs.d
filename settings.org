@@ -165,6 +165,9 @@
 (global-set-key [(control /)]  'comment-dwim)
 (global-set-key [(control t)] 'goto-line)
 (set-face-attribute 'default nil :height 110)
+
+(use-package imenu-list
+             :ensure t)
 #+END_SRC
 
 * JS, HTML, less, and adoc
@@ -177,7 +180,7 @@
              :ensure t)
 (use-package rjsx-mode
              :mode "\\.jsx")
-(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
+;;(add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode))
 (use-package json-mode
              :mode "\\.json\\'"
              :config (setq js-indent-level 4)
@@ -293,6 +296,8 @@
     (define-key org-mode-map (kbd "<C-right>") 'org-metaright)
     (define-key org-mode-map (kbd "<C-up>") 'org-metaup)
     (define-key org-mode-map (kbd "<C-left>") 'org-metaleft)))
+(setq org-todo-keywords
+'((sequence "TODO" "INPROG" "DONE")))
 #+END_SRC
 * ivy
 #+BEGIN_SRC emacs-lisp
@@ -375,9 +380,9 @@
                                          (setq syntax-ppss-table nil)
                                          (make-local-variable 'typescript-indent-level)
                                          (setq typescript-indent-level 2)))
-                                         (add-to-list 'vue-modes '(:type template :name nil :mode web-mode))
-                                         (add-to-list 'vue-modes '(:type template :name html :mode web-mode))
-                                         :ensure t)
+    (add-to-list 'vue-modes '(:type template :name nil :mode web-mode))
+    (add-to-list 'vue-modes '(:type template :name html :mode web-mode))
+    :ensure t)
 
     (use-package lsp-mode
     :init
