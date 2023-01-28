@@ -35,6 +35,7 @@
  '(js2-strict-inconsistent-return-warning nil)
  '(js2-strict-trailing-comma-warning nil)
  '(magit-diff-refine-hunk t)
+ '(org-agenda-files '("~/ops.org"))
  '(package-selected-packages
    '(imenu-list cl lsp-typescript lsp-clients lsp lsp-flycheck lsp-ui ssass-mode lsp-vue lsp-mode vue-mode prettier-js web-mode rjsx-mode tide counsel ag magit multiple-cursors flymake-yaml yaml-mode groovy-mode flymake-jshint flymake-easy adoc-mode less-css-mode json-mode js2-mode use-package diminish)))
 (custom-set-faces

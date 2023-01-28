@@ -297,7 +297,10 @@
     (define-key org-mode-map (kbd "<C-up>") 'org-metaup)
     (define-key org-mode-map (kbd "<C-left>") 'org-metaleft)))
 (setq org-todo-keywords
-'((sequence "TODO" "INPROG" "DONE")))
+'((sequence "TODO" "INPROG" "|" "ONHOLD" "DONE")))
+(setq org-todo-keyword-faces
+      '(("INPROG" . "yellow")
+        ("ONHOLD" . "blue")))
 #+END_SRC
 * ivy
 #+BEGIN_SRC emacs-lisp
