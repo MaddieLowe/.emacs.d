@@ -319,46 +319,22 @@
 #+END_SRC
 * typescript
 #+BEGIN_SRC emacs-lisp
-;; from the Tide README
-(defun setup-tide-mode ()
-  "Set up Tide mode."
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save-mode-enabled idle-change new-line))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1))
+;; Help emacs identify typescript files
+(use-package typescript-mode
+  :ensure t
+)
+;; error squigglies
+(use-package flycheck
+  :ensure t
+  :hook ((after-init . global-flycheck-mode)))
 
+;; recommended flycheck settings (which use tide)
 (use-package tide
   :ensure t
-  :config
-  (setq company-tooltip-align-annotations t)
-  ;;(add-hook 'before-save-hook 'tide-format-before-save) ;; This was causing really annoying indenting
-  (add-hook 'typescript-mode-hook #'setup-tide-mode))
-
-(add-hook 'js2-mode-hook #'setup-tide-mode)
-;; configure javascript-tide checker to run after your default javascript checker
-(flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
-
-(use-package web-mode
-  :mode ("\\.html$" . web-mode)
-  :init
-  (setq web-mode-markup-indent-offset 4)
-  (setq web-mode-code-indent-offset 4)
-  (setq web-mode-css-indent-offset 4)
-
-  (setq web-mode-enable-auto-pairing nil)
-  (setq web-mode-enable-auto-expanding nil)
-  (setq web-mode-auto-quote-style nil)
-  (setq web-mode-enable-css-colorization t))
-
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-(add-hook 'web-mode-hook
-          (lambda ()
-            (when (string-equal "tsx" (file-name-extension buffer-file-name))
-              (setup-tide-mode))))
-;; enable typescript-tslint checker
-(flycheck-add-mode 'typescript-tslint 'web-mode)
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+))
 #+END_SRC
 * vue
 #+BEGIN_SRC emacs-lisp
