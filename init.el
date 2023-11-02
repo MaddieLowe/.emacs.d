@@ -37,7 +37,7 @@
  '(magit-diff-refine-hunk t)
  '(org-agenda-files '("~/ops.org"))
  '(package-selected-packages
-   '(typescript-mode imenu-list cl lsp-typescript lsp-clients lsp lsp-flycheck lsp-ui ssass-mode lsp-vue lsp-mode vue-mode prettier-js web-mode rjsx-mode tide counsel ag magit multiple-cursors flymake-yaml yaml-mode groovy-mode flymake-jshint flymake-easy adoc-mode less-css-mode json-mode js2-mode use-package diminish)))
+   '(terraform-mode typescript-mode imenu-list cl lsp-typescript lsp-clients lsp lsp-flycheck lsp-ui ssass-mode lsp-vue lsp-mode vue-mode prettier-js web-mode rjsx-mode tide counsel ag magit multiple-cursors flymake-yaml yaml-mode groovy-mode flymake-jshint flymake-easy adoc-mode less-css-mode json-mode js2-mode use-package diminish)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
