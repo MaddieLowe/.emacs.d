@@ -92,7 +92,7 @@
 #+BEGIN_SRC emacs-lisp
 (tool-bar-mode -1)
 (font-lock-mode t)
-(setq-default line-number-mode t)
+(global-display-line-numbers-mode)
 (setq-default show-trailing-whitespace t)
 (show-paren-mode t)
 (setq-default truncate-lines t)
