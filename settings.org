@@ -378,3 +378,10 @@
     :custom (terraform-indent-level 2)
     :config)
 #+END_SRC
+* copilot
+#+BEGIN_SRC emacs-lisp
+  (use-package copilot
+    :load-path (lambda () (expand-file-name "copilot.el" user-emacs-directory))
+    ;; don't show in mode line??
+    :diminish)
+#+END_SRC

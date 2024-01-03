@@ -19,6 +19,18 @@
 (eval-when-compile
   (require 'use-package))
 
+;;copilot stuff
+(require 'cl-lib)
+(let ((pkg-list '(use-package
+                   s
+                   dash
+                   editorconfig
+                   company)))
+  (package-initialize)
+  (when-let ((to-install (map-filter (lambda (pkg _) (not (package-installed-p pkg))) pkg-list)))
+    (package-refresh-contents)
+    (mapc (lambda (pkg) (package-install pkg)) pkg-list)))
+
 (use-package diminish :ensure t)
 (require 'org)
 (org-babel-load-file
