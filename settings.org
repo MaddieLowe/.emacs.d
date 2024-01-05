@@ -387,8 +387,14 @@
 
   (defun rk/copilot-tab ()
     "Tab command that will complete with copilot if a completion is available."
-        (interactive)
-        (copilot-accept-completion))
+    (interactive)
+    (copilot-accept-completion))
+
+  (defun rk/copilot-tab-word ()
+    "Complete one word with copilot."
+    (interactive)
+    (copilot-accept-completion-by-word))
 
   (define-key global-map (kbd "C-<tab>") #'rk/copilot-tab)
+  (define-key global-map (kbd "M-<tab>") #'rk/copilot-tab-word)
 #+END_SRC
