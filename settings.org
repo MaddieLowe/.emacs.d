@@ -397,4 +397,7 @@
 
   (define-key global-map (kbd "C-<tab>") #'rk/copilot-tab)
   (define-key global-map (kbd "M-<tab>") #'rk/copilot-tab-word)
+
+  ;; Warnings are driving me bonkers
+  (setq warning-minimum-level :error)
 #+END_SRC
