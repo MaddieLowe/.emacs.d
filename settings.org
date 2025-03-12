@@ -198,7 +198,12 @@
 (use-package flymake-jshint
              :ensure t)
 #+END_SRC
-
+* Go
+#+BEGIN_SRC emacs-lisp
+(use-package go-mode
+             :mode ("\\.go\\'")
+             :ensure t)
+#+END_SRC
 * Jenkins
 #+BEGIN_SRC emacs-lisp
 (use-package groovy-mode
